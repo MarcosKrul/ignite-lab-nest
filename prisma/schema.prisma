@@ -9,3 +9,15 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Notification {
+  id          String    @id @db.Uuid
+  content     String
+  category    String
+  readAt      DateTime? @map("read_at") @db.Timestamp()
+  recipientId String    @map("recipient_id") @db.Uuid
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamp()
+
+  @@index([recipientId])
+  @@map("notification")
+}
