@@ -1,0 +1,64 @@
+1) Arquitetura de microserviços
+-> Arquitetura no sentido de "como a aplicação será hospedada em produção"
+-> Dois formatos
+Monolito: toda base de código da aplicação em apenas um lugar
+Microserviços: códigos separados, divisão da aplicação em "mini-aplicações"
+-> A questão de microserviços é algo que afeta muito mais o deploy da aplicação, e não no código
+-> Monolito pode ser problemático em aplicações muito grandes
+Todos os serviços da aplicação são "dependentes", se um cair, afeta os outros que, não necessariamente,
+são dependentes de fato
+-> Microserviços devem ser independentes entre si
+-> Problema com base de dados
+No modelo de monolito é fácil realizar o controle do banco, existe apenas um código
+Ideia de concorrência
+-> Cada microserviço tem sua db própria
+Problema: um microserviço precisa de informações de outro microserviço
+Opção: o microserviço realiza uma chamada http para obter as informações, porém, isso quebra a ideia
+de independência dos microserviços, ou seja, se um cair, vai afetar os outros
+Forma utilizada: armazenamento das informações em cada microserviço que seja necessário; gera duplicidade
+de dados
+Os microserviços utilizam algum serviço de mensageria (ws, mqtt, kafka) para se comunicarem e realizar
+a persistência em bancos diferentes
+Ponto positivo é que nem todos os dados precisam ser duplicados, depende da situação, o que cada
+microserviço precisa de informação
+
+2) Nest.JS
+-> Freamework para node
+-> Completo, bom para diversas aplicações (monolito, microserviços)
+-> É um framework opinado
+Cria uma estrutura prévia, não é o programador que define isso
+É bom para quando não se sabe o que usar, o nest já definiu uma forma, e o dev não precisa se 
+preocupar nas tomadas de decisão
+ex.: qual lib usar para fazer autenticação, já que existem várias libs disponíveis; o nest já tem isso
+pronto
+-> Essa "opinião" do nest é boa para quem não quer perder tempo com tomadas de decisão, aumentando
+a produtividade
+Demora tomar decisões na hora de estruturar o projeto e suas features (qual lib escolher, qual estrutura,
+qual orm, ...)
+-> Já possui muitas integrações
+Se quiser usar graphQL, já está pronto
+Apache Kafka, Redis, gRPC, prisma, entre outras, tudo já está integrado no nest
+-> Typescript e decorators
+-> Trabalha bastante com os princípios do SOLID
+
+
+-> Index no prisma
+A tabela de notification tem um recipientId que é o ID do usuário
+Esse ID pode estar no banco de outro microserviço (de usuário, de autenticação, ...)
+É como se fosse uma foreign key, mas não é porque o db desse microserviço não tem essa tabela
+É necessário ter esse ID para que o client possa buscar todas as notificações no serviço de notificação
+com o ID do usuário (que ele recebeu de outro microserviço)
+-> Nomenclatura dessas chaves estrangeiras
+É interresante nomear da forma correta; cada microserviço pode chamar o usuário de uma forma diferente
+Ecommerce: microserviço de compra, o usuário é um cliente; microserviço de logísitca, o usuário é o
+destinatário
+-> Outra forma de nomear é colocando o microserviço como prefixo
+No exemplo dessa aplicação, o recipientId poderia ser nomeado como authUserId, indicando que aquele ID
+é do microserviço de autenticação
+
+
+-> material icon theme
+Por padrão fica com os ícones do angular
+Angular e nest possuem a nomenclatura parecida (name.service, name.module)
+Alterar o settings.json do VSCode:
+  "material-icon-theme.activeIconPack": "nest"
