@@ -3,13 +3,13 @@ import { Notification } from '../entities/notification/notification';
 import { NotificationContent } from '../entities/notification/notification-content';
 import { NotificationsRepository } from '../repositories/notifications-repository';
 
-export interface SendNotificationRequest {
+interface SendNotificationRequest {
   recipientId: string;
   content: string;
   category: string;
 }
 
-export interface SendNotificationResponse {
+interface SendNotificationResponse {
   notification: Notification;
 }
 
