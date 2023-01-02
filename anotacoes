@@ -62,3 +62,23 @@ Por padrão fica com os ícones do angular
 Angular e nest possuem a nomenclatura parecida (name.service, name.module)
 Alterar o settings.json do VSCode:
   "material-icon-theme.activeIconPack": "nest"
+
+
+-> É possível que haja importação entre módulos
+App module importa http e database
+Porém, o http também precisa importar o database
+O use case (provider do http) precisa do provider do database
+Database precisa exportar os provider que serão usados por outros módulos
+Não basta apenas importar o módulo
+
+
+-> Um problema do nest é a necessidade de informar o decorator Injectable
+Os use-cases ficam acoplados à lib
+
+
+-> Dica de leitura
+Artigos do Martin Fowler
+-> In memory test database
+https://martinfowler.com/bliki/InMemoryTestDatabase.html
+-> Microservices
+https://martinfowler.com/articles/microservices.html 
