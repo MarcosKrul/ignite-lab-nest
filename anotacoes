@@ -82,3 +82,17 @@ Artigos do Martin Fowler
 https://martinfowler.com/bliki/InMemoryTestDatabase.html
 -> Microservices
 https://martinfowler.com/articles/microservices.html 
+
+
+-> Mappers
+Em aplicações com divisões de camadas, é possível que uma mesma entidade seja representada de
+formas diferentes
+Necessidade de modularizar os mapeamentos entre os formatos da mesma entidade
+-> Os mappers são diretamente associados à camada
+-> O mesmo conceito pode ser aplicado com diferentes nomes
+Módulo db: mapper
+Módulo http: view-model
+
+
+-> Factory pattern
+Função usada para abstrair a criação de objetos
