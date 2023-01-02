@@ -9,6 +9,7 @@ export class PrismaNotificationMapper {
     id,
     readAt,
     recipientId,
+    canceledAt,
   }: Notification) {
     return {
       id,
@@ -17,6 +18,7 @@ export class PrismaNotificationMapper {
       recipientId,
       readAt,
       createdAt,
+      canceledAt,
     };
   }
 
